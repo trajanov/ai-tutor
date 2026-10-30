@@ -76,7 +76,7 @@ Escalation is **earned, not toggled**: "Give me more help" moves up one level on
 ## 5. Architecture
 
 ```
-hard-learn-chrome/
+chrome-extension/
   manifest.json            MV3; host_permissions for chatgpt.com, gemini.google.com
   src/
     content/
