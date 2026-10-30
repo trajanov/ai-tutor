@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Hard Learn</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <h1>Hard Learn</h1>
+  <p class="sub">Think first. Hints before answers.</p>
+
+  <label class="switch">
+    <span><b>Hard Learn is <span id="enabledLabel">on</span></b></span>
+    <input type="checkbox" role="switch" id="enabled">
+    <i aria-hidden="true"></i>
+  </label>
+
+  <div id="main">
+  <section>
+    <h2>Learning mode</h2>
+    <div id="mode" class="mode"></div>
+    <p class="small">Change modes from the panel on the chat page. More help unlocks after you send an attempt.</p>
+  </section>
+
+  <section>
+    <h2>Progress</h2>
+    <div class="row"><span>Success, last 10 attempts</span><b id="rate">–</b></div>
+    <div class="meter"><i id="bar"></i><b></b></div>
+    <p class="small">Target is about 85%: hard but doable.</p>
+  </section>
+
+  <section>
+    <h2>Settings</h2>
+    <label><input type="checkbox" id="requireAttempt"> Ask for my attempt before each question</label>
+    <label><input type="checkbox" id="autoAdapt"> Adapt the help level automatically</label>
+    <label><input type="checkbox" id="guardLeaks"> Hide replies that give away the answer</label>
+    <p id="managed" class="small" hidden>Some settings are managed by your organization.</p>
+  </section>
+
+  <button id="reset" class="btn">Reset progress</button>
+  </div>
+  <script src="../core/modes.js"></script>
+  <script src="../core/adaptive.js"></script>
+  <script src="../core/storage.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+{
+  "type": "object",
+  "properties": {
+    "lockSettings": {
+      "title": "Lock settings",
+      "description": "Students cannot change Hard Learn settings in the popup.",
+      "type": "boolean"
+    },
+    "defaultMode": {
+      "title": "Default learning mode",
+      "description": "One of: coach, hint, explain, answer.",
+      "type": "string",
+      "enum": ["coach", "hint", "explain", "answer"]
+    },
+    "maxHelpMode": {
+      "title": "Most help allowed",
+      "description": "Highest mode a student can reach (e.g. 'explain' disables Answer mode).",
+      "type": "string",
+      "enum": ["coach", "hint", "explain", "answer"]
+    },
+    "requireAttempt": {
+      "title": "Require an attempt before asking",
+      "type": "boolean"
+    },
+    "autoAdapt": {
+      "title": "Adapt the help level automatically (85% rule)",
+      "type": "boolean"
+    },
+    "guardLeaks": {
+      "title": "Hide replies that give away the answer in Hint/Coach mode",
+      "type": "boolean"
+    }
+  }
+}

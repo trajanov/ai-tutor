@@ -1,0 +1,48 @@
+{
+  "manifest_version": 3,
+  "name": "Hard Learn",
+  "version": "0.1.0",
+  "description": "Turns ChatGPT and Gemini into tutors: think first, hints before answers, help adapted to keep you at ~85% success.",
+  "permissions": ["storage"],
+  "host_permissions": [
+    "https://chatgpt.com/*",
+    "https://chat.openai.com/*",
+    "https://gemini.google.com/*"
+  ],
+  "storage": {
+    "managed_schema": "managed_schema.json"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://chatgpt.com/*",
+        "https://chat.openai.com/*",
+        "https://gemini.google.com/*"
+      ],
+      "js": [
+        "src/core/modes.js",
+        "src/core/adaptive.js",
+        "src/core/storage.js",
+        "src/content/sites.js",
+        "src/content/ui.js",
+        "src/content/main.js"
+      ],
+      "css": ["src/content/page.css"],
+      "run_at": "document_idle"
+    }
+  ],
+  "action": {
+    "default_title": "Hard Learn",
+    "default_popup": "src/popup/popup.html",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  }
+}
