@@ -1,6 +1,6 @@
 # Hard Learn — Chrome Extension Plan
 
-A Chrome extension (Manifest V3) that sits on top of **chatgpt.com** and **gemini.google.com** and turns them into learning tools: hints before answers, think-first prompts, and adaptive difficulty.
+A Chrome extension (Manifest V3) that sits on top of **chatgpt.com**, **gemini.google.com** and **claude.ai** and turns them into learning tools: hints before answers, think-first prompts, and adaptive difficulty.
 
 Source concept: hint-first AI (Bastani et al., 2025), cognitive forcing functions (Buçinca et al., 2021), the 85% rule (Wilson et al., 2019), and "protective default, not opt-in."
 
@@ -34,6 +34,7 @@ Selectors change often, so they live in one config file per site (`sites/chatgpt
 
 - **ChatGPT** (`chatgpt.com`, `chat.openai.com`): composer is a ProseMirror `contenteditable` (historically `#prompt-textarea`); send button `[data-testid="send-button"]`; assistant messages `[data-message-author-role="assistant"]`.
 - **Gemini** (`gemini.google.com`): composer is a Quill editor inside `rich-textarea` (`.ql-editor`); send button has an aria-label like "Send message"; responses live in `model-response` / `message-content` elements.
+- **Claude** (`claude.ai`): composer is a ProseMirror `contenteditable` (`[data-testid="chat-input"]`); send button `aria-label="Send message"`; user messages `[data-testid="user-message"]`; each reply sits in a `[data-is-streaming]` wrapper whose value is `"true"` while it streams. Long pastes may be turned into a "Pasted content" attachment, so check that the wrapped prompt stays inline.
 
 Text insertion into these editors has to go through events the editor listens to (`document.execCommand('insertText')` or a synthetic `InputEvent`/paste), not by setting `.innerText` directly. Otherwise the framework's state never sees the change. **That's the main technical risk, and the first spike should prove it on both sites.**
 
@@ -77,7 +78,7 @@ Escalation is **earned, not toggled**: "Give me more help" moves up one level on
 
 ```
 chrome-extension/
-  manifest.json            MV3; host_permissions for chatgpt.com, gemini.google.com
+  manifest.json            MV3; host_permissions for chatgpt.com, gemini.google.com, claude.ai
   src/
     content/
       main.js              boots the right site adapter, mounts the UI
@@ -120,7 +121,7 @@ No backend for the MVP. Everything stays local, so there are no student-data pri
 - `chrome.storage.managed` policy, locked settings, admin docs for the Google Admin console force-install.
 
 **Phase 5 (optional)**
-- More sites (claude.ai, Copilot), export of learning stats, teacher dashboard (this would need a backend and a privacy review).
+- More sites (Copilot), export of learning stats, teacher dashboard (this would need a backend and a privacy review).
 
 ---
 

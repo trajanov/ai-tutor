@@ -24,6 +24,23 @@ const SITES = {
     user: 'user-query',
     stop: 'button[aria-label*="Stop"]',
   },
+  claude: {
+    host: /(^|\.)claude\.ai$/,
+    composer: [
+      '[data-testid="chat-input"][contenteditable="true"]',
+      'div.ProseMirror[contenteditable="true"]',
+      'fieldset [contenteditable="true"]',
+    ],
+    send: [
+      'button[aria-label="Send message" i]',
+      'button[aria-label="Send" i]',
+      'fieldset button[type="submit"]',
+    ],
+    // The [data-is-streaming] wrapper holds one whole reply; the font classes are fallbacks.
+    assistant: '[data-is-streaming], .font-claude-response, .font-claude-message',
+    user: '[data-testid="user-message"]',
+    stop: '[data-is-streaming="true"], button[aria-label*="Stop" i]',
+  },
 };
 
 const first = (sels, root = document) => {
